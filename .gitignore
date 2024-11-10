@@ -1,3 +1,8 @@
 __pycache__
+backend/
 build/
 dj_click.egg-info/
+manage.py
+mongo_migrations/
+requirements.txt
+src/

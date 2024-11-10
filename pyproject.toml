@@ -3,6 +3,7 @@ name = "dj-click"
 version = "0.1.0"
 dependencies = [
     "click",
+    "django>5,<5.1",
 ]
 
 [tool.setuptools]
@@ -10,3 +11,11 @@ packages = ["dj_click"]
 
 [project.scripts]
 dj = "dj_click:cli"
+
+# Too bad these aren't editable
+[project.optional-dependencies]
+dev = [
+    "django-mongodb @ git+ssh://git@github.com/aclark4life/django-mongodb@INTPYTHON-348",
+    "pymongo @ git+ssh://git@github.com/aclark4life/mongo-python-driver",
+    "django @ git+ssh://git@github.com/aclark4life/django@mongodb-5.0.x",
+]
