@@ -13,6 +13,9 @@ DEV_DEPENDENCIES = [
     "-e git+https://github.com/aclark4life/django-mongodb@INTPYTHON-348#egg=django-mongodb",
 ]
 
+TEST_MODULES = [
+        "raw_query",
+        ]
 
 @click.group()
 def cli():
@@ -45,6 +48,9 @@ def install():
         [sys.executable, "-m", "pip", "install", "-r", "requirements.txt"],
         env={"PIP_SRC": "src"},
     )
+    subprocess.run(
+        [sys.executable, "-m", "pip", "install", "-r", "src/django/tests/requirements/py3.txt"]
+    )
 
 
 @click.command()
@@ -69,8 +75,24 @@ def startproject():
         ]
     )
 
+@click.command()
+@click.option("-k", default=None)
+def test(k):
+    shutil.copyfile("src/django-mongodb/.github/workflows/mongodb_settings.py", "src/django/tests/mongodb_settings.py")
+    for module in TEST_MODULES:
+        print(f"Running tests for {module}")
+        if k:
+            subprocess.run(
+                [sys.executable, "src/django/tests/runtests.py", "--settings", "mongodb_settings", "--parallel", "1", module, "-k", k]
+            )
+        else:
+            subprocess.run(
+                [sys.executable, "src/django/tests/runtests.py", "--settings", "mongodb_settings", "--parallel", "1", module]
+            )
+
 
 cli.add_command(clean)
 cli.add_command(install)
 cli.add_command(runserver)
 cli.add_command(startproject)
+cli.add_command(test)
