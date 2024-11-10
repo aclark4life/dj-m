@@ -1,0 +1,45 @@
+from .base import *  # noqa
+
+ALLOWED_HOSTS = ["*"]
+DEBUG = True
+
+# django-debug-toolbar
+
+MIDDLEWARE.append("debug_toolbar.middleware.DebugToolbarMiddleware")  # noqa
+INSTALLED_APPS.append("debug_toolbar")
+INTERNAL_IPS = [
+    "127.0.0.1",
+]
+
+# logging
+
+LOGGING = {
+    "version": 1,
+    "disable_existing_loggers": False,
+    "formatters": {
+        "verbose": {
+            "format": "{levelname} {asctime} {module} {message}",
+            "style": "{",
+        },
+        "simple": {
+            "format": "{levelname} {message}",
+            "style": "{",
+        },
+    },
+    "handlers": {
+        "console": {
+            "level": "DEBUG",
+            "class": "logging.StreamHandler",
+            "formatter": "verbose",
+        },
+    },
+    "loggers": {
+        "django": {
+            "handlers": ["console"],
+            "level": "DEBUG",
+            "propagate": True,
+        },
+    },
+}
+
+DATA_UPLOAD_MAX_NUMBER_FIELDS = 1000000

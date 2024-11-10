@@ -5,7 +5,15 @@ import subprocess
 import sys
 
 
-PROJECT_FILES = ["backend", "manage.py", "mongo_migrations"]
+PROJECT_FILES = ["backend", "manage.py", "mongo_migrations",
+	".eslintrc",
+	".stylelintrc.json",
+	"frontend/",
+	"home/",
+	"package.json",
+	"postcss.config.js",
+                 ]
+
 
 DEV_DEPENDENCIES = [
     "-e git+https://github.com/aclark4life/django@mongodb-5.0.x#egg=django",
@@ -14,8 +22,14 @@ DEV_DEPENDENCIES = [
 ]
 
 TEST_MODULES = [
-        "raw_query",
-        ]
+    "raw_query",
+]
+
+PROJECT_TEMPLATES = {
+    "dj-click": "startproject_template",
+    "mongodb": "https://github.com/mongodb-labs/django-mongodb-project/archive/refs/heads/5.0.x.zip",
+}
+
 
 @click.group()
 def cli():
@@ -49,7 +63,14 @@ def install():
         env={"PIP_SRC": "src"},
     )
     subprocess.run(
-        [sys.executable, "-m", "pip", "install", "-r", "src/django/tests/requirements/py3.txt"]
+        [
+            sys.executable,
+            "-m",
+            "pip",
+            "install",
+            "-r",
+            "src/django/tests/requirements/py3.txt",
+        ]
     )
 
 
@@ -59,7 +80,8 @@ def runserver():
 
 
 @click.command()
-def startproject():
+@click.option("-t", default=PROJECT_TEMPLATES["dj-click"])
+def startproject(t):
     try:
         from django.core import management
     except ModuleNotFoundError:
@@ -71,23 +93,45 @@ def startproject():
             "backend",
             ".",
             "--template",
-            "https://github.com/mongodb-labs/django-mongodb-project/archive/refs/heads/5.0.x.zip",
+            t,
         ]
     )
+
 
 @click.command()
 @click.option("-k", default=None)
 def test(k):
-    shutil.copyfile("src/django-mongodb/.github/workflows/mongodb_settings.py", "src/django/tests/mongodb_settings.py")
+    shutil.copyfile(
+        "src/django-mongodb/.github/workflows/mongodb_settings.py",
+        "src/django/tests/mongodb_settings.py",
+    )
     for module in TEST_MODULES:
         print(f"Running tests for {module}")
         if k:
             subprocess.run(
-                [sys.executable, "src/django/tests/runtests.py", "--settings", "mongodb_settings", "--parallel", "1", module, "-k", k]
+                [
+                    sys.executable,
+                    "src/django/tests/runtests.py",
+                    "--settings",
+                    "mongodb_settings",
+                    "--parallel",
+                    "1",
+                    module,
+                    "-k",
+                    k,
+                ]
             )
         else:
             subprocess.run(
-                [sys.executable, "src/django/tests/runtests.py", "--settings", "mongodb_settings", "--parallel", "1", module]
+                [
+                    sys.executable,
+                    "src/django/tests/runtests.py",
+                    "--settings",
+                    "mongodb_settings",
+                    "--parallel",
+                    "1",
+                    module,
+                ]
             )
 
 
