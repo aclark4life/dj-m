@@ -1,8 +1,16 @@
+.eslintrc
+.stylelintrc.json
 __pycache__
 backend/
 build/
 dj_click.egg-info/
+frontend/
+home/
 manage.py
 mongo_migrations/
+node_modules/
+package-lock.json
+package.json
+postcss.config.js
 requirements.txt
 src/

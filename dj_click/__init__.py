@@ -5,14 +5,17 @@ import subprocess
 import sys
 
 
-PROJECT_FILES = ["backend", "manage.py", "mongo_migrations",
-	".eslintrc",
-	".stylelintrc.json",
-	"frontend/",
-	"home/",
-	"package.json",
-	"postcss.config.js",
-                 ]
+PROJECT_FILES = [
+    "backend",
+    "manage.py",
+    "mongo_migrations",
+    ".eslintrc",
+    ".stylelintrc.json",
+    "frontend/",
+    "home/",
+    "package.json",
+    "postcss.config.js",
+]
 
 
 DEV_DEPENDENCIES = [
