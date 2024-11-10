@@ -1,0 +1,12 @@
+[project]
+name = "dj-click"
+version = "0.1.0"
+dependencies = [
+    "click",
+]
+
+[tool.setuptools]
+packages = ["dj_click"]
+
+[project.scripts]
+dj = "dj_click:cli"
