@@ -285,11 +285,12 @@ pip-freeze:
 
 alias freeze := pip-freeze
 
-# install requirements from requirements.txt
+# install dj-click
 [group('python')]
 pip-install:
     pip install -U pip
-    export PIP_SRC=src && pip install -r requirements.txt
+    pip install -e .
+    dj install
 
 alias install := pip-install
 alias i := pip-install
