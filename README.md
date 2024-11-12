@@ -2,12 +2,19 @@
 
 > "A task runner for all seasons." —Alex
 
-`dj-click` is a task runner for Django projects. It is a wrapper around `click` that provides a simple way to define and run tasks for your Django project.
+`dj-click` is a task runner for Django projects. It is a wrapper around `click` that provides a simple way to define and run tasks for your Django MongoDB project.
+
+## Requirements
+
+- [Just a command runner](https://github.com/casey/just)
+
+## Features
 
 ## Installation
 
 ```bash
-pip install dj-click
+git clone git@github.com:aclark4life/dj-click.git
+just install
 ```
 
 ## Usage
