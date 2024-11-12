@@ -158,12 +158,6 @@ alias pack := npm-init
 
 # ---------------------------------------- python ----------------------------------------
 
-# save requirements to requirements.txt
-[group('python')]
-pip-freeze:
-    pip freeze > requirements.txt
-alias freeze := pip-freeze
-
 [group('python')]
 pip-install:
     pip install -U pip
