@@ -15,4 +15,5 @@ postcss.config.js
 requirements.txt
 !startproject_template/mongo_migrations
 server.log
+server.pid
 src/
