@@ -64,6 +64,7 @@ def install():
 
 @click.command()
 def runserver():
+    subprocess.Popen(["npm", "run", "watch"])
     subprocess.run([sys.executable, "manage.py", "runserver", "0.0.0.0:8000"])
 
 
