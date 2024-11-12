@@ -32,13 +32,6 @@ django-migrations: check-venv
     python manage.py makemigrations
 alias migrations := django-migrations
 
-# django-serve
-[group('django')]
-django-serve: check-venv
-    npm run watch &
-    python manage.py runserver
-alias s := django-serve
-
 # django-shell
 [group('django')]
 django-shell: check-venv
@@ -137,24 +130,6 @@ alias l := just-list
 just-edit:
     @just -e
 alias e := just-edit
-
-# ---------------------------------------- npm ----------------------------------------
-
-# npm run build
-[group('npm')]
-npm-build:
-    npm run build
-
-# npm install
-[group('npm')]
-npm-install:
-    npm install
-
-# npm-install and npm-build
-[group('npm')]
-npm-init: npm-install npm-build
-alias n := npm-init
-alias pack := npm-init
 
 # ---------------------------------------- python ----------------------------------------
 
