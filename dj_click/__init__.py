@@ -108,6 +108,12 @@ def test(modules, keyword):
     """
     Run tests for specified modules with an optional keyword filter.
     """
+
+    shutil.copyfile(
+        "src/django-mongodb/.github/workflows/mongodb_settings.py",
+        "src/django/tests/mongodb_settings.py",
+    )
+
     command = ["src/django/tests/runtests.py"]
     command.extend(["--settings", "mongodb_settings"])
     command.extend(["--parallel", "1"])
