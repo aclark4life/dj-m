@@ -178,13 +178,6 @@ django-test:
 alias test := django-test
 alias t := django-test
 
-# ---------------------------------------- dns ----------------------------------------
-
-# test dns
-[group('dns')]
-dns:
-    coredns -conf Corefile
-
 # ---------------------------------------- git ----------------------------------------
 
 # git checkout .
