@@ -54,6 +54,12 @@ def install():
             "src/django/tests/requirements/py3.txt",
         ]
     )
+    subprocess.run(
+        [
+            "npm",
+            "install",
+        ]
+    )
 
 
 @click.command()
