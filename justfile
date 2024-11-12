@@ -111,11 +111,11 @@ git-pull:
     pushd src/pymongo && git pull && popd
 alias gp := git-pull
 
-# git remote
+# git remote add
 [group('git')]
-git-remote:
+git-remote-add:
     pushd src/django-mongodb && git remote add upstream git@github.com:mongodb-labs/django-mongodb.git && popd 
-alias ra := git-remote
+alias gra := git-remote-add
 
 # git fetch
 [group('git')]

@@ -24,15 +24,10 @@ DEV_DEPENDENCIES = [
     "-e git+https://github.com/aclark4life/polls#egg=polls",
 ]
 
-TEST_MODULES = [
-    "raw_query",
-]
-
 PROJECT_TEMPLATES = {
     "dj-click": "startproject_template",
     "mongodb": "https://github.com/mongodb-labs/django-mongodb-project/archive/refs/heads/5.0.x.zip",
 }
-
 
 @click.group()
 def cli():
