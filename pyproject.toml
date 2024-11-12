@@ -4,6 +4,9 @@ version = "0.1.0"
 dependencies = [
     "click",
     "django>5,<5.1",
+    "django-debug-toolbar",
+    "django-extensions",
+    "python-webpack-boilerplate",
 ]
 
 [tool.setuptools]
@@ -12,7 +15,7 @@ packages = ["dj_click"]
 [project.scripts]
 dj = "dj_click:cli"
 
-# Too bad these aren't editable
+# Too bad these aren't editable! See dj_click/__init__.py for workaround.
 [project.optional-dependencies]
 dev = [
     "django-mongodb @ git+ssh://git@github.com/aclark4life/django-mongodb@INTPYTHON-348",
