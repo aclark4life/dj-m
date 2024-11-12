@@ -7,10 +7,12 @@ dj_click.egg-info/
 frontend/
 home/
 manage.py
+mongo_migrations/
 node_modules/
 package-lock.json
 package.json
 postcss.config.js
 requirements.txt
+!startproject_template/mongo_migrations
 server.log
 src/
