@@ -100,42 +100,32 @@ def startproject(t):
         ]
     )
 
-
 @click.command()
-@click.option("-k", default=None)
-def test(k):
-    shutil.copyfile(
-        "src/django-mongodb/.github/workflows/mongodb_settings.py",
-        "src/django/tests/mongodb_settings.py",
-    )
-    for module in TEST_MODULES:
-        print(f"Running tests for {module}")
-        if k:
-            subprocess.run(
-                [
-                    sys.executable,
-                    "src/django/tests/runtests.py",
-                    "--settings",
-                    "mongodb_settings",
-                    "--parallel",
-                    "1",
-                    module,
-                    "-k",
-                    k,
-                ]
-            )
-        else:
-            subprocess.run(
-                [
-                    sys.executable,
-                    "src/django/tests/runtests.py",
-                    "--settings",
-                    "mongodb_settings",
-                    "--parallel",
-                    "1",
-                    module,
-                ]
-            )
+@click.argument('modules', nargs=-1)
+@click.option('-k', '--keyword', help='Filter tests by keyword')
+def test(modules, keyword):
+    """
+    Run tests for specified modules with an optional keyword filter.
+    """
+    command = ["src/django/tests/runtests.py"]
+    command.extend(["--settings", "mongodb_settings"])
+    command.extend(["--parallel", "1"])
+    
+    # Add modules to the command
+    command.extend(modules)
+    
+    # Add keyword filter if provided
+    if keyword:
+        command.extend(['-k', keyword])
+    
+    click.echo(f"Running command: {' '.join(command)}")
+    
+    # Execute the command
+    result = subprocess.run(command, capture_output=True, text=True)
+    
+    # Print the output
+    click.echo(result.stdout)
+    click.echo(result.stderr)
 
 
 cli.add_command(install)
