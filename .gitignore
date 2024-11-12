@@ -13,4 +13,5 @@ package-lock.json
 package.json
 postcss.config.js
 requirements.txt
+server.log
 src/
