@@ -1,3 +1,6 @@
+## dj-click
+## For django-mongodb development
+
 # list all available recipes
 default: just-list
 
