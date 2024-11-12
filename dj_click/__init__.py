@@ -21,6 +21,7 @@ DEV_DEPENDENCIES = [
     "-e git+https://github.com/aclark4life/django@mongodb-5.0.x#egg=django",
     "-e git+https://github.com/aclark4life/mongo-python-driver@PYTHON-4575#egg=pymongo",
     "-e git+https://github.com/aclark4life/django-mongodb@INTPYTHON-348#egg=django-mongodb",
+    "-e git+https://github.com/aclark4life/polls#egg=polls",
 ]
 
 TEST_MODULES = [
@@ -39,7 +40,7 @@ def cli():
 
 
 @click.command()
-def clean():
+def stopproject():
     for item in PROJECT_FILES:
         try:
             if os.path.isfile(item):
@@ -137,8 +138,8 @@ def test(k):
             )
 
 
-cli.add_command(clean)
 cli.add_command(install)
 cli.add_command(runserver)
 cli.add_command(startproject)
+cli.add_command(stopproject)
 cli.add_command(test)
