@@ -82,7 +82,7 @@ alias l := just-list
 # edit the justfile
 [group('just')]
 just-edit:
-    @just -e
+    nvim dj_click/__init__.py
 alias e := just-edit
 
 # ---------------------------------------- python ----------------------------------------
