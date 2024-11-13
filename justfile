@@ -26,14 +26,7 @@ git-checkout:
     pushd src/django && git checkout . && popd
     pushd src/django-mongodb && git checkout . && popd
     pushd src/pymongo && git checkout . && popd
-alias gco := git-checkout
-
-# git commit with last commit message
-[group('git')]
-git-commit-last:
-    git log -1 --pretty=%B | git commit -a -F -
-    git push
-alias last := git-commit-last
+alias co := git-checkout
 
 # git commit and push
 [group('git')]
@@ -53,7 +46,7 @@ alias ce := git-commit-edit-push
 [group('git')]
 git-log:
     git log --oneline
-alias log := git-log
+alias lo := git-log
 
 # git pull
 [group('git')]
