@@ -107,7 +107,8 @@ alias gp := git-pull
 # git remote add
 [group('git')]
 git-remote-add:
-    pushd src/django-mongodb && git remote add upstream git@github.com:mongodb-labs/django-mongodb.git && popd 
+    -pushd src/django-mongodb && git remote add upstream git@github.com:mongodb-labs/django-mongodb && popd 
+    pushd src/django && git remote add upstream git@github.com:mongodb-forks/django && popd 
 alias gra := git-remote-add
 
 # git fetch
