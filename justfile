@@ -42,6 +42,13 @@ git-commit-edit-push:
     git push
 alias ce := git-commit-edit-push
 
+# git fetch
+[group('git')]
+git-fetch:
+    pushd src/django-mongodb && git fetch upstream && popd 
+    pushd src/django && git fetch upstream && popd 
+alias f := git-fetch
+
 # git log
 [group('git')]
 git-log:
@@ -55,7 +62,7 @@ git-pull:
     pushd src/django && git pull && popd
     pushd src/django-mongodb && git pull && popd
     pushd src/pymongo && git pull && popd
-alias gp := git-pull
+alias p := git-pull
 
 # git remote add
 [group('git')]
@@ -63,13 +70,6 @@ git-remote-add:
     -pushd src/django-mongodb && git remote add upstream git@github.com:mongodb-labs/django-mongodb && popd 
     pushd src/django && git remote add upstream git@github.com:mongodb-forks/django && popd 
 alias gra := git-remote-add
-
-# git fetch
-[group('git')]
-git-fetch:
-    pushd src/django-mongodb && git fetch upstream && popd 
-    pushd src/django && git fetch upstream && popd 
-alias gf := git-fetch
 
 # ---------------------------------------- just ----------------------------------------
 
