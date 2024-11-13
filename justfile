@@ -6,51 +6,11 @@ default: just-list
 
 # ---------------------------------------- django ----------------------------------------
 
-# django-dbshell
-[group('django')]
-django-dbshell:
-    python manage.py dbshell
-alias dbshell := django-dbshell
-alias dbsh := django-dbshell
-
 # django-install
 [group('django')]
 django-install: check-venv pip-install
 alias install := django-install
 alias i := django-install
-
-# django-migrate
-[group('django')]
-django-migrate: check-venv
-    python manage.py migrate
-alias migrate := django-migrate
-alias m := django-migrate
-
-# django-migrations
-[group('django')]
-django-migrations: check-venv
-    python manage.py makemigrations
-alias migrations := django-migrations
-
-# django-shell
-[group('django')]
-django-shell: check-venv
-    python manage.py shell
-alias shell := django-shell
-alias sh := django-shell
-
-# django-sqlmigrate
-[group('django')]
-django-sqlmigrate app_label migration_name:
-    python manage.py sqlmigrate {{ app_label }} {{ migration_name }}
-alias sqlmigrate := django-sqlmigrate
-
-# django-su
-[group('django')]
-django-su: check-venv
-    DJANGO_SUPERUSER_PASSWORD=admin python manage.py createsuperuser --noinput \
-        --username=admin --email=`git config user.mail`
-alias su := django-su
 
 # django-open
 [group('django')]
