@@ -116,6 +116,9 @@ def test(modules, keyword, l):
         # Print the output
         click.echo(result.stdout)
         click.echo(result.stderr)
+        result = subprocess.run(["ls", os.path.join("src", "django-mongodb", "tests")], capture_output=True, text=True)
+        click.echo(result.stdout)
+        click.echo(result.stderr)
         exit()
 
     shutil.copyfile(
@@ -126,6 +129,7 @@ def test(modules, keyword, l):
     command = ["src/django/tests/runtests.py"]
     command.extend(["--settings", "mongodb_settings"])
     command.extend(["--parallel", "1"])
+    command.extend(["--verbosity", "3"])
 
     # Add modules to the command
     command.extend(modules)
