@@ -1,6 +1,5 @@
 import click
 import os
-import pprint
 import shutil
 import subprocess
 import sys
@@ -29,6 +28,7 @@ PROJECT_TEMPLATES = {
     "dj-click": "startproject_template",
     "mongodb": "https://github.com/mongodb-labs/django-mongodb-project/archive/refs/heads/5.0.x.zip",
 }
+
 
 @click.group()
 def cli():
@@ -99,20 +99,18 @@ def startproject(template, delete):
 @click.command()
 @click.argument("modules", nargs=-1)
 @click.option("-k", "--keyword", help="Filter tests by keyword")
-@click.option("-l", default=False, is_flag=True, help="List available tests")
-def test(modules, keyword, l):
+@click.option(
+    "-l", "--list-tests", default=False, is_flag=True, help="List available tests"
+)
+def test(modules, keyword, list_tests):
     """
     Run tests for specified modules with an optional keyword filter.
     """
-
-    if l:
-        result = subprocess.run(["ls", os.path.join("src", "django", "tests")], capture_output=True, text=True)
-        # Print the output
-        click.echo(result.stdout)
-        click.echo(result.stderr)
-        result = subprocess.run(["ls", os.path.join("src", "django-mongodb", "tests")], capture_output=True, text=True)
-        click.echo(result.stdout)
-        click.echo(result.stderr)
+    if list_tests:
+        click.echo(subprocess.run(["ls", os.path.join("src", "django", "tests")]))
+        click.echo(
+            subprocess.run(["ls", os.path.join("src", "django-mongodb", "tests")])
+        )
         exit()
 
     shutil.copyfile(
