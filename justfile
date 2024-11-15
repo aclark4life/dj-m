@@ -91,7 +91,7 @@ alias e := just-edit
 pip-install:
     pip install -U pip
     pip install -e .
-    pip install -r requirements.txt
+    export PIP_SRC=src && pip install -r requirements.txt
 
 # ensure virtual environment is active
 [group('python')]
