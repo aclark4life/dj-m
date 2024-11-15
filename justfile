@@ -21,7 +21,7 @@ alias o := django-open
 # django-mongodb-templates
 [group('django')]
 django-mongodb-templates:
-    git clone git@github.com:aclark4life/django-mongodb-app src/django-mongodb-app
+    -git clone git@github.com:aclark4life/django-mongodb-app src/django-mongodb-app
     git clone git@github.com:aclark4life/django-mongodb-project src/django-mongodb-project
 
 # ---------------------------------------- git ----------------------------------------
