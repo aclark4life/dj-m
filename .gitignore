@@ -3,7 +3,7 @@
 __pycache__
 backend/
 build/
-dj_click.egg-info/
+dj_m.egg-info/
 frontend/
 home/
 manage.py
