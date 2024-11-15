@@ -20,7 +20,7 @@ just install
 ## Usage
 
 ```bash
-dj-click --help
+dj-m --help
 ```
 
 ## Similar Projects
