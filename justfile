@@ -91,7 +91,6 @@ alias e := just-edit
 pip-install:
     pip install -U pip
     pip install -e .
-    dj install
 
 # ensure virtual environment is active
 [group('python')]
