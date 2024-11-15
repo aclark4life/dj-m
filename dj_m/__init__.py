@@ -105,8 +105,14 @@ def test(modules, keyword, list_tests):
 
     click.echo(f"Running command: {' '.join(command)}")
 
-    # Execute the command
+    # Start MongoDB
+    mongodb = subprocess.Popen(["mongo-launch", "single"])
+
+    # Execute the test command
     subprocess.run(command, stdin=None, stdout=None, stderr=None)
+
+    # Terminate MongoDB
+    mongodb.terminate()
 
 
 cli.add_command(runserver)
