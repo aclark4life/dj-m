@@ -51,6 +51,7 @@ def startproject(template, delete):
                     print(f"Skipping: {item} (not a file or directory)")
             except Exception as e:
                 print(f"Error removing {item}: {e}")
+        exit()
     try:
         from django.core import management
     except ModuleNotFoundError:
