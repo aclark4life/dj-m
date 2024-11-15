@@ -8,7 +8,7 @@ default: just-list
 
 # django-install
 [group('django')]
-django-install: check-venv pip-install
+django-install: check-venv pip-install django-mongodb-templates
 alias install := django-install
 alias i := django-install
 
@@ -17,6 +17,12 @@ alias i := django-install
 django-open:
     open http://0.0.0.0:8000
 alias o := django-open
+
+# django-mongodb-templates
+[group('django')]
+django-mongodb-templates:
+    git clone git@github.com:aclark4life/django-mongodb-app src/django-mongodb-app
+    git clone git@github.com:aclark4life/django-mongodb-project src/django-mongodb-project
 
 # ---------------------------------------- git ----------------------------------------
 
