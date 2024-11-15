@@ -1,4 +1,4 @@
-## dj-click
+## dj-m
 ## for django-mongodb development
 
 # list all available recipes
@@ -45,8 +45,8 @@ alias ce := git-commit-edit-push
 # git fetch
 [group('git')]
 git-fetch:
-    pushd src/django-mongodb && git fetch upstream && popd 
-    pushd src/django && git fetch upstream && popd 
+    pushd src/django-mongodb && git fetch upstream && popd
+    pushd src/django && git fetch upstream && popd
 alias f := git-fetch
 
 # git log
@@ -67,8 +67,8 @@ alias p := git-pull
 # git remote add
 [group('git')]
 git-remote-add:
-    -pushd src/django-mongodb && git remote add upstream git@github.com:mongodb-labs/django-mongodb && popd 
-    pushd src/django && git remote add upstream git@github.com:mongodb-forks/django && popd 
+    -pushd src/django-mongodb && git remote add upstream git@github.com:mongodb-labs/django-mongodb && popd
+    pushd src/django && git remote add upstream git@github.com:mongodb-forks/django && popd
 alias a := git-remote-add
 
 # ---------------------------------------- just ----------------------------------------
@@ -82,7 +82,7 @@ alias l := just-list
 # edit the justfile
 [group('just')]
 just-edit:
-    nvim dj_click/__init__.py
+    nvim dj_m/__init__.py
 alias e := just-edit
 
 # ---------------------------------------- python ----------------------------------------

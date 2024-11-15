@@ -17,13 +17,6 @@ PROJECT_FILES = [
     "postcss.config.js",
 ]
 
-DEV_DEPENDENCIES = [
-    "-e git+https://github.com/aclark4life/django@mongodb-5.0.x#egg=django",
-    "-e git+https://github.com/aclark4life/mongo-python-driver@PYTHON-4575#egg=pymongo",
-    "-e git+https://github.com/aclark4life/django-mongodb@INTPYTHON-348#egg=django-mongodb",
-    "-e git+https://github.com/aclark4life/polls#egg=polls",
-]
-
 PROJECT_TEMPLATES = {
     "dj-click": "startproject_template",
     "mongodb": "https://github.com/mongodb-labs/django-mongodb-project/archive/refs/heads/5.0.x.zip",
@@ -33,28 +26,6 @@ PROJECT_TEMPLATES = {
 @click.group()
 def cli():
     pass
-
-
-@click.command()
-def install():
-    subprocess.run([sys.executable, "-m", "pip", "install", "-U", "pip"])
-    with open("requirements.txt", "w") as f:
-        for dependency in DEV_DEPENDENCIES:
-            f.write(f"{dependency}\n")
-    subprocess.run(
-        [sys.executable, "-m", "pip", "install", "-r", "requirements.txt"],
-        env={"PIP_SRC": "src"},
-    )
-    subprocess.run(
-        [
-            sys.executable,
-            "-m",
-            "pip",
-            "install",
-            "-r",
-            "src/django/tests/requirements/py3.txt",
-        ]
-    )
 
 
 @click.command()
@@ -137,7 +108,6 @@ def test(modules, keyword, list_tests):
     subprocess.run(command, stdin=None, stdout=None, stderr=None)
 
 
-cli.add_command(install)
 cli.add_command(runserver)
 cli.add_command(startproject)
 cli.add_command(test)
