@@ -37,7 +37,7 @@ alias co := git-checkout
 # git commit and push
 [group('git')]
 git-commit-push:
-    git commit -a -m "Add/update just-django recipes."
+    git commit -a -m "Add/update dj-m recipes."
     git push
 alias cp := git-commit-push
 
