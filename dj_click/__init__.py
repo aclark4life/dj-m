@@ -133,11 +133,7 @@ def test(modules, keyword, list_tests):
     click.echo(f"Running command: {' '.join(command)}")
 
     # Execute the command
-    result = subprocess.run(command, capture_output=True, text=True)
-
-    # Print the output
-    click.echo(result.stdout)
-    click.echo(result.stderr)
+    subprocess.run(command, stdin=None, stdout=None, stderr=None)
 
 
 cli.add_command(install)
