@@ -19,7 +19,7 @@ PROJECT_FILES = [
 
 PROJECT_TEMPLATES = {
     "dj-m": "startproject_template",
-    "mongodb": "https://github.com/mongodb-labs/django-mongodb-project/archive/refs/heads/5.0.x.zip",
+    "mongodb": os.path.join("src", "django-mongodb-project"),
 }
 
 
@@ -35,7 +35,7 @@ def runserver():
 
 
 @click.command()
-@click.option("-t", "--template", default=PROJECT_TEMPLATES["dj-m"])
+@click.option("-t", "--template", default="dj-m")
 @click.option("-d", "--delete", is_flag=True, help="Delete existing project files")
 def startproject(template, delete):
     if delete:
@@ -63,7 +63,7 @@ def startproject(template, delete):
             "backend",
             ".",
             "--template",
-            template,
+            PROJECT_TEMPLATES[template],
         ]
     )
 
