@@ -1,5 +1,6 @@
 dj_m.egg-info/
 dj_m/__pycache__/
+mongo_project/
 server.log
 server.pid
 src/
