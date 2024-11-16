@@ -5,18 +5,6 @@ import subprocess
 import sys
 
 
-PROJECT_FILES = [
-    "backend",
-    "manage.py",
-    "mongo_migrations",
-    ".eslintrc",
-    ".stylelintrc.json",
-    "frontend/",
-    "home/",
-    "package.json",
-    "postcss.config.js",
-]
-
 PROJECT_TEMPLATES = {
     "dj-m": "startproject_template",
     "mongodb": os.path.join("src", "django-mongodb-project"),
@@ -39,32 +27,31 @@ def runserver():
 @click.option("-d", "--delete", is_flag=True, help="Delete existing project files")
 def startproject(template, delete):
     if delete:
-        for item in PROJECT_FILES:
-            try:
-                if os.path.isfile(item):
-                    os.remove(item)  # Remove file
-                    print(f"Removed file: {item}")
-                elif os.path.isdir(item):
-                    shutil.rmtree(item)  # Remove directory
-                    print(f"Removed directory: {item}")
-                else:
-                    print(f"Skipping: {item} (not a file or directory)")
-            except Exception as e:
-                print(f"Error removing {item}: {e}")
+        if os.path.isdir("mongo_project"):
+            shutil.rmtree("mongo_project")  # Remove directory
+            print(f"Removed directory: mongo_project")
+        else:
+            print(f"Skipping: mongo_project does not exist")
         exit()
     try:
         from django.core import management
     except ModuleNotFoundError:
         exit("Django is not installed. Run `pip install django` to install Django.")
-    management.execute_from_command_line(
-        [
-            "django-admin",
-            "startproject",
-            "backend",
-            ".",
-            "--template",
-            PROJECT_TEMPLATES[template],
-        ]
+
+    cwd = os.getcwd()
+    os.makedirs("mongo_project", exist_ok=True)
+    os.chdir("mongo_project")
+    click.echo(
+        subprocess.run(
+            [
+                "django-admin",
+                "startproject",
+                "backend",
+                ".",
+                "--template",
+                os.path.join(cwd, PROJECT_TEMPLATES[template]),
+            ]
+        )
     )
 
 
