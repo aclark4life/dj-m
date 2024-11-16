@@ -18,9 +18,11 @@ def cli():
 
 @click.command()
 def runserver():
+    mongodb = subprocess.Popen(["mongo-launch", "single"])
+    os.chdir("mongo_project")
     subprocess.Popen(["npm", "run", "watch"])
     subprocess.run([sys.executable, "manage.py", "runserver", "0.0.0.0:8000"])
-
+    mongodb.terminate()
 
 @click.command()
 @click.option("-t", "--template", default="dj-m")
