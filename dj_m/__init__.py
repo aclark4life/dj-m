@@ -15,7 +15,6 @@ PROJECT_TEMPLATES = {
 def cli():
     pass
 
-
 @click.command()
 def createsuperuser():
     try:
@@ -27,6 +26,10 @@ def createsuperuser():
     os.environ["DJANGO_SUPERUSER_PASSWORD"] = "admin"
     subprocess.run([sys.executable, "manage.py", "createsuperuser", "--noinput", "--username=admin", f"--email={user_email}"])
 
+@click.command()
+def migrate():
+    os.chdir("mongo_project")
+    subprocess.run([sys.executable, "manage.py", "migrate"])
 
 @click.command()
 def runserver():
@@ -118,6 +121,7 @@ def test(modules, keyword, list_tests):
 
 
 cli.add_command(createsuperuser)
+cli.add_command(migrate)
 cli.add_command(runserver)
 cli.add_command(startproject)
 cli.add_command(test)
