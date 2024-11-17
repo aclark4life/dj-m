@@ -17,6 +17,18 @@ def cli():
 
 
 @click.command()
+def createsuperuser():
+    try:
+        user_email = subprocess.check_output(["git", "config", "user.email"], text=True).strip()
+        print(f"User email: {user_email}")
+    except subprocess.CalledProcessError:
+        print("Error: Unable to retrieve the user email from git config.")
+    os.chdir("mongo_project")
+    os.environ["DJANGO_SUPERUSER_PASSWORD"] = "admin"
+    subprocess.run([sys.executable, "manage.py", "createsuperuser", "--noinput", "--username=admin", f"--email={user_email}"])
+
+
+@click.command()
 def runserver():
     mongodb = subprocess.Popen(["mongo-launch", "single"])
     os.chdir("mongo_project")
@@ -105,6 +117,7 @@ def test(modules, keyword, list_tests):
     mongodb.terminate()
 
 
+cli.add_command(createsuperuser)
 cli.add_command(runserver)
 cli.add_command(startproject)
 cli.add_command(test)
