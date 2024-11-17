@@ -20,6 +20,7 @@ def cli():
 def runserver():
     mongodb = subprocess.Popen(["mongo-launch", "single"])
     os.chdir("mongo_project")
+    subprocess.run(["npm", "install"])
     subprocess.Popen(["npm", "run", "watch"])
     subprocess.run([sys.executable, "manage.py", "runserver", "0.0.0.0:8000"])
     mongodb.terminate()
