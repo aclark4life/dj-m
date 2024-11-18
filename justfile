@@ -106,6 +106,7 @@ pip-install:
     pip install -U pip
     pip install -e .
     export PIP_SRC=src && pip install -r requirements.txt
+    pre-commit install
 
 # ensure virtual environment is active
 [group('python')]
