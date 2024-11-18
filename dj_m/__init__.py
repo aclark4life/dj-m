@@ -2,51 +2,11 @@ import click
 import os
 import shutil
 import subprocess
-import sys
 
 
 @click.group()
 def cli():
     pass
-
-
-@click.command()
-def createsuperuser():
-    try:
-        user_email = subprocess.check_output(
-            ["git", "config", "user.email"], text=True
-        ).strip()
-        print(f"User email: {user_email}")
-    except subprocess.CalledProcessError:
-        print("Error: Unable to retrieve the user email from git config.")
-    os.chdir("mongo_project")
-    os.environ["DJANGO_SUPERUSER_PASSWORD"] = "admin"
-    subprocess.run(
-        [
-            sys.executable,
-            "manage.py",
-            "createsuperuser",
-            "--noinput",
-            "--username=admin",
-            f"--email={user_email}",
-        ]
-    )
-
-
-@click.command()
-def migrate():
-    os.chdir("mongo_project")
-    subprocess.run([sys.executable, "manage.py", "migrate"])
-
-
-@click.command()
-def runserver():
-    mongodb = subprocess.Popen(["mongo-launch", "single"])
-    os.chdir("mongo_project")
-    subprocess.run(["npm", "install"])
-    subprocess.Popen(["npm", "run", "watch"])
-    subprocess.run([sys.executable, "manage.py", "runserver", "0.0.0.0:8000"])
-    mongodb.terminate()
 
 
 @click.command()
@@ -96,7 +56,4 @@ def test(modules, keyword, list_tests):
     mongodb.terminate()
 
 
-cli.add_command(createsuperuser)
-cli.add_command(migrate)
-cli.add_command(runserver)
 cli.add_command(test)
